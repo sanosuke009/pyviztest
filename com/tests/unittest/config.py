@@ -1,3 +1,5 @@
+from allure_commons.types import AttachmentType
+
 localExecution = True # To check between local and vm/docker execution
 reportPath = 'allure-results/'
 implicitwait = 5000
@@ -12,3 +14,7 @@ playwright_traces_dir = "./test-results/"
 
 visualtestresults = "./VisualTestResults/"
 updatesnapshot = False
+savefailuresnapondisk = False
+allurereport = True
+
+attachmenttype = AttachmentType.PNG

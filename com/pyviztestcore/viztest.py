@@ -3,11 +3,13 @@ from com.pyviztestcore.pyviztestmain import VisualTestMain
 
 class VisualTest:
 
-    def __init__(self, snapshot_path:str='', driverpage:Any='', updatesnapshot=False):
-        self.visual = VisualTestMain(snapshot_path, driverpage, updatesnapshot)
+    def __init__(self, snapshot_path:str='', driverpage:Any='', updatesnapshot=False, savefailuresnapondisk=True,
+                 allurereport=False):
+        self.visual = VisualTestMain(snapshot_path, driverpage, updatesnapshot, savefailuresnapondisk
+                                     , allurereport)
 
-    def setpaths(self, updatesnapshot=False) -> None:
-        self.visual.setpaths(updatesnapshot)
+    def setpaths(self, updatesnapshot=False, numberofclassesaftertestclass:int=0) -> None:
+        self.visual.setpaths(updatesnapshot, numberofclassesaftertestclass)
 
     def visualtest_web(self, *, stepname = '', threshold: float = 0.1, 
                    fail_fast=False, updatesnapshot=False, fullpage = True, snapshot_of_locators:list=[],
