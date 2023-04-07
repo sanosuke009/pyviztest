@@ -1,5 +1,6 @@
 import inspect
 import io
+import os
 import sys
 import shutil
 from io import BytesIO
@@ -66,6 +67,8 @@ class VisualTestMain:
             shutil.rmtree(self.test_results_dir)
         if updatesnapshot == True:
             self.updatesnapshots = True
+        print(str(sys.platform))
+        print(str(os.path.abspath(self.filepath)))
 
     def captureGoldenSnapshot(self, img: bytes, *, stepname = '') -> bool:
         try:
