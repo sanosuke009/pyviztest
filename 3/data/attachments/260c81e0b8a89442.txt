@@ -1,0 +1,3 @@
+win32
+D:\a\pyviztest\pyviztest\VisualTestResults\Golden_Snapshots\testplaywright\test_matchingsnapshot
+--> Snapshots match perfectly!
