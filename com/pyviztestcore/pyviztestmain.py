@@ -68,6 +68,7 @@ class VisualTestMain:
         if updatesnapshot == True:
             self.updatesnapshots = True
         print(str(sys.platform))
+        print(str(self.filepath))
         print(str(os.path.abspath(self.filepath)))
 
     def captureGoldenSnapshot(self, img: bytes, *, stepname = '') -> bool:
