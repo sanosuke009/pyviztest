@@ -1,0 +1,11 @@
+sys.platform=win32
+self.base_path=VisualTestResults/
+self.snapshot_path=VisualTestResults/
+self.filepath=VisualTestResults\Golden_Snapshots\testplaywright\test_goldensnapshot_element
+abs(self.filepath)=D:\a\pyviztest\pyviztest\VisualTestResults\Golden_Snapshots\testplaywright\test_goldensnapshot_element
+--> Golden snapshots will be created. Please review images
+--> Golden snapshots updated. Please review images
+--> Golden snapshots will be created. Please review images
+--> Golden snapshots updated. Please review images
+--> Golden snapshots will be created. Please review images
+--> Golden snapshots updated. Please review images
