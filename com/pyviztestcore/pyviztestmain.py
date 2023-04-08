@@ -46,12 +46,13 @@ class VisualTestMain:
         classname = self.retrieve_class_name()
         self.test_file_name = classname.split('\\')[-1].strip('.py')
         self.base_path = Path(classname).parent.resolve() if self.snapshot_path == '' else self.snapshot_path
-        self.filepath = (
-                    Path(self.base_path)
-                    / 'Golden_Snapshots'
-                    / self.test_file_name
-                    / self.test_dir
-            )
+        self.filepath = Path(os.path.join(
+                    #Path(self.base_path)
+                    self.base_path
+                    , "Golden_Snapshots"
+                    , self.test_file_name
+                    , self.test_dir
+            ))
         # Create a dir where all snapshot test failures will go
         self.results_dir_name = (
                 Path(self.base_path)
@@ -69,6 +70,8 @@ class VisualTestMain:
             self.updatesnapshots = True
         print("sys.platform="+str(sys.platform))
         print("self.base_path="+str(self.base_path))
+        print("Path(self.base_path)="+str(Path(self.base_path)))
+        print("Path(classname).parent.resolve()="+str(Path(classname).parent.resolve()))
         print("self.snapshot_path="+str(self.snapshot_path))
         print("self.filepath="+str(self.filepath))
         print("abs(self.filepath)="+str(os.path.abspath(self.filepath)))
