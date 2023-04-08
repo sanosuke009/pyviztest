@@ -1,0 +1,5 @@
+win32
+VisualTestResults\Golden_Snapshots\testplaywright\test_goldensnapshot
+D:\a\pyviztest\pyviztest\VisualTestResults\Golden_Snapshots\testplaywright\test_goldensnapshot
+--> Golden snapshots will be created. Please review images
+--> Golden snapshots updated. Please review images

@@ -1,0 +1,6 @@
+win32
+VisualTestResults\Golden_Snapshots\testplaywright\test_matchingsnapshot_element
+D:\a\pyviztest\pyviztest\VisualTestResults\Golden_Snapshots\testplaywright\test_matchingsnapshot_element
+--> Snapshots match perfectly!
+--> Snapshots match perfectly!
+--> Snapshots match perfectly!

@@ -1,0 +1,4 @@
+win32
+VisualTestResults\Golden_Snapshots\testplaywright\test_nonmatchingsnapshot
+D:\a\pyviztest\pyviztest\VisualTestResults\Golden_Snapshots\testplaywright\test_nonmatchingsnapshot
+--> Snapshots DO NOT match!
