@@ -67,9 +67,11 @@ class VisualTestMain:
             shutil.rmtree(self.test_results_dir)
         if updatesnapshot == True:
             self.updatesnapshots = True
-        print(str(sys.platform))
-        print(str(self.filepath))
-        print(str(os.path.abspath(self.filepath)))
+        print("sys.platform="+str(sys.platform))
+        print("self.base_path="+str(self.base_path))
+        print("self.snapshot_path="+str(self.snapshot_path))
+        print("self.filepath="+str(self.filepath))
+        print("abs(self.filepath)="+str(os.path.abspath(self.filepath)))
 
     def captureGoldenSnapshot(self, img: bytes, *, stepname = '') -> bool:
         try:

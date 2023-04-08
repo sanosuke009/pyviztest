@@ -12,7 +12,7 @@ user_data_dir = "./web/user_data_dir"
 playwright_videos_dir = "./recorded-videos/"
 playwright_traces_dir = "./test-results/"
 
-visualtestresults = "./VisualTestResults/"
+visualtestresults = "VisualTestResults/"
 updatesnapshot = False
 savefailuresnapondisk = False
 allurereport = True
