@@ -1,0 +1,9 @@
+sys.platform=darwin
+self.base_path=VisualTestResults
+Path(self.base_path)=VisualTestResults
+Path(classname).parent.resolve()=/Users/runner/work/pyviztest/pyviztest/com/tests/unittest
+self.snapshot_path=VisualTestResults
+self.filepath=/Users/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_goldensnapshot
+abs(self.filepath)=/Users/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_goldensnapshot
+--> Golden snapshots will be created. Please review images
+--> Golden snapshots updated. Please review images
