@@ -1,0 +1,8 @@
+sys.platform=win32
+self.base_path=VisualTestResults\Golden_Snapshots\testplaywright\test_nonmatchingsnapshot
+Path(self.base_path)=VisualTestResults\Golden_Snapshots\testplaywright\test_nonmatchingsnapshot
+Path(classname).parent.resolve()=D:\a\pyviztest\pyviztest\com\tests\unittest
+self.snapshot_path=VisualTestResults
+self.filepath=D:\a\pyviztest\pyviztest\VisualTestResults\Golden_Snapshots\testplaywright\test_nonmatchingsnapshot
+abs(self.filepath)=D:\a\pyviztest\pyviztest\VisualTestResults\Golden_Snapshots\testplaywright\test_nonmatchingsnapshot
+--> Snapshots DO NOT match!

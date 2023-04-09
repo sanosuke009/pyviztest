@@ -1,0 +1,13 @@
+sys.platform=linux
+self.base_path=/home/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_updatesnapshot_element
+Path(self.base_path)=/home/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_updatesnapshot_element
+Path(classname).parent.resolve()=/home/runner/work/pyviztest/pyviztest/com/tests/unittest
+self.snapshot_path=VisualTestResults
+self.filepath=/home/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_updatesnapshot_element
+abs(self.filepath)=/home/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_updatesnapshot_element
+--> Golden snapshots will be created. Please review images
+--> Golden snapshots updated. Please review images
+--> Golden snapshots will be created. Please review images
+--> Golden snapshots updated. Please review images
+--> Golden snapshots will be created. Please review images
+--> Golden snapshots updated. Please review images
