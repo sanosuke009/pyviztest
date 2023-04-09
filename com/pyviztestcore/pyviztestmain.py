@@ -131,7 +131,7 @@ class VisualTestMain:
                     img_b.save(img_b_byte_arr, format='PNG')
                     img_b_byte_arr = img_b_byte_arr.getvalue()
                     self.expected_snapshot = img_b_byte_arr
-                    self.expected_snapshot_name = f'Expected_{name}'
+                    self.expected_snapshot_name = f'Actual_{name}'
 
                     #self.diff_snapshot = img_diff.tobytes("hex", "rgb")
                     img_diff_byte_arr = io.BytesIO()
