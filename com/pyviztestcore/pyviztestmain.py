@@ -45,7 +45,9 @@ class VisualTestMain:
         self.test_dir = self.test_func_name
         classname = self.retrieve_class_name()
         self.test_file_name = classname.split('\\')[-1].strip('.py')
-        self.base_path = Path(classname).parent.resolve() if self.snapshot_path == '' else self.snapshot_path
+        self.base_path = str(Path(classname).parent.resolve()) if self.snapshot_path == '' else self.snapshot_path
+        #self.base_path = self.base_path + "/Golden_Snapshots/" + self.test_file_name + "/" + self.test_dir
+        
         self.base_path = os.path.join(
                     self.base_path
                     , "Golden_Snapshots"
@@ -57,7 +59,7 @@ class VisualTestMain:
         self.results_dir_name = (
                 Path(self.base_path)
                 / "Failure_Snapshots"
-                ).absolute().resolve()
+                )
         self.test_results_dir = (
                 self.results_dir_name
                 / self.test_file_name 
@@ -68,13 +70,11 @@ class VisualTestMain:
             shutil.rmtree(self.test_results_dir)
         if updatesnapshot == True:
             self.updatesnapshots = True
-        print("sys.platform="+str(sys.platform))
-        print("self.base_path="+str(self.base_path))
-        print("Path(self.base_path)="+str(Path(self.base_path)))
-        print("Path(classname).parent.resolve()="+str(Path(classname).parent.resolve()))
-        print("self.snapshot_path="+str(self.snapshot_path))
+        print("sys.platform="+sys.platform)
+        print("self.snapshot_path="+self.snapshot_path)
+        print("self.base_path="+self.base_path)
         print("self.filepath="+str(self.filepath))
-        print("abs(self.filepath)="+str(os.path.abspath(self.filepath)))
+        print("Path(classname).parent.resolve()="+str(Path(classname).parent.resolve()))
 
     def captureGoldenSnapshot(self, img: bytes, *, stepname = '') -> bool:
         try:
