@@ -46,7 +46,7 @@ class VisualTestMain:
         classname = self.retrieve_class_name()
         self.test_file_name = classname.split(os.sep)[-1].strip('.py') #classname.split('\\')[-1].strip('.py')
         self.resultpath = str(Path(classname).parent.resolve()) if self.snapshot_path == '' else self.snapshot_path
-        self.base_path = self.resultpath + "/Golden_Snapshots/" + self.test_file_name + "/" + self.test_dir
+        self.base_path = self.resultpath + os.sep + "Golden_Snapshots" + os.sep +  self.test_file_name +  os.sep + self.test_dir
         
         # self.base_path = os.path.join(
         #             self.base_path
@@ -56,15 +56,8 @@ class VisualTestMain:
         #     )
         self.filepath = Path(self.base_path).absolute().resolve()
         # Create a dir where all snapshot test failures will go
-        self.results_dir_name = (
-                Path(self.base_path)
-                / "Failure_Snapshots"
-                )
-        self.test_results_dir = (
-                self.results_dir_name
-                / self.test_file_name 
-                / self.test_name
-                )
+        self.results_dir_name_str = self.resultpath + os.sep +  "Failure_Snapshots" + os.sep +  self.test_file_name  + os.sep + self.test_name
+        self.test_results_dir = Path(self.results_dir_name_str).absolute().resolve()
         # Remove a single test's past run dir with actual, diff and expected images
         if self.test_results_dir.exists():
             shutil.rmtree(self.test_results_dir)
