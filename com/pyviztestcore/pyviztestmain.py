@@ -44,9 +44,9 @@ class VisualTestMain:
         self.test_name = f"{str(sys.platform)}_{self.test_func_name}"
         self.test_dir = self.test_func_name
         classname = self.retrieve_class_name()
-        self.test_file_name = classname.split('\\')[-1].strip('.py')
-        self.base_path = str(Path(classname).parent.resolve()) if self.snapshot_path == '' else self.snapshot_path
-        self.base_path = self.base_path + "/Golden_Snapshots/" + self.test_file_name + "/" + self.test_dir
+        self.test_file_name = classname.split(os.sep)[-1].strip('.py') #classname.split('\\')[-1].strip('.py')
+        self.resultpath = str(Path(classname).parent.resolve()) if self.snapshot_path == '' else self.snapshot_path
+        self.base_path = self.resultpath + "/Golden_Snapshots/" + self.test_file_name + "/" + self.test_dir
         
         # self.base_path = os.path.join(
         #             self.base_path
@@ -72,6 +72,7 @@ class VisualTestMain:
             self.updatesnapshots = True
         print("sys.platform="+sys.platform)
         print("self.snapshot_path="+self.snapshot_path)
+        print("self.resultpath="+self.resultpath)
         print("self.base_path="+self.base_path)
         print("self.filepath="+str(self.filepath))
         print("Path(classname).parent.resolve()="+str(Path(classname).parent.resolve()))
