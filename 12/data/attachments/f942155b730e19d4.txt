@@ -1,0 +1,7 @@
+sys.platform=darwin
+self.snapshot_path=VisualTestResults
+self.resultpath=VisualTestResults
+self.base_path=VisualTestResults/Golden_Snapshots/testplaywright/test_matchingsnapshot
+self.filepath=/Users/runner/work/pyviztest/pyviztest/VisualTestResults/Golden_Snapshots/testplaywright/test_matchingsnapshot
+Path(classname).parent.resolve()=/Users/runner/work/pyviztest/pyviztest/com/tests/unittest
+--> Snapshots DO NOT match!
