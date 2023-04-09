@@ -41,9 +41,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: allure-results-ubuntu
-        path: |
-          allure-results/*
-          VisualTestResults/*
+        path: allure-results/*
         retention-days: 30
 
   windows-pyviztest-tests:
@@ -76,9 +74,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: allure-results-windows
-        path: |
-          allure-results/*
-          VisualTestResults/*
+        path: allure-results/*
         retention-days: 30
 
   macos-pyviztest-tests:
@@ -110,9 +106,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: allure-results-macos
-        path: |
-          allure-results/*
-          VisualTestResults/*
+        path: allure-results
         retention-days: 30
 
   generate-allure-report:

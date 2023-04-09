@@ -13,8 +13,8 @@ playwright_videos_dir = "./recorded-videos/"
 playwright_traces_dir = "./test-results/"
 
 visualtestresults = "VisualTestResults"
-updatesnapshot = True
-savefailuresnapondisk = True
-allurereport = False
+updatesnapshot = False
+savefailuresnapondisk = False
+allurereport = True
 
 attachmenttype = AttachmentType.PNG
