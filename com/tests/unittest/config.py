@@ -14,7 +14,7 @@ playwright_traces_dir = "./test-results/"
 
 visualtestresults = "VisualTestResults"
 updatesnapshot = False
-savefailuresnapondisk = False
+savefailuresnapondisk = True
 allurereport = True
 
 attachmenttype = AttachmentType.PNG
