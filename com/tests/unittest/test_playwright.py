@@ -14,7 +14,7 @@ def before_each(page:Page):
     page.goto(url=url)
     yield
 
-def test_goldensnapshot(page:Page) -> None:
+def test_playwright_goldensnapshot(page:Page) -> None:
     vm = VisualTest(snapshot_path=visualtestresults, driverpage=page, updatesnapshot=updatesnapshot, 
                     savefailuresnapondisk=savefailuresnapondisk, allurereport=allurereport)
     vm.setpaths(updatesnapshot=True)
@@ -26,12 +26,12 @@ def test_goldensnapshot(page:Page) -> None:
     resultpath = (
         Path(visualtestresults)
         / "Golden_Snapshots"
-        / "testplaywright"
-        / "test_goldensnapshot"
+        / "test_playwright"
+        / "test_playwright_goldensnapshot"
     )
     shutil.rmtree(os.path.abspath(resultpath))
 
-def test_updatesnapshot(page:Page) -> None:
+def test_playwright_updatesnapshot(page:Page) -> None:
     vm = VisualTest(snapshot_path=visualtestresults, driverpage=page, updatesnapshot=updatesnapshot, 
                     savefailuresnapondisk=savefailuresnapondisk, allurereport=allurereport)
     vm.setpaths(updatesnapshot=True)
@@ -41,7 +41,7 @@ def test_updatesnapshot(page:Page) -> None:
         assert True
     assert vm.visualtest_web(stepname="launchpage")
 
-def test_matchingsnapshot(page:Page) -> None:
+def test_playwright_matchingsnapshot(page:Page) -> None:
     vm = VisualTest(snapshot_path=visualtestresults, driverpage=page, updatesnapshot=updatesnapshot, 
                     savefailuresnapondisk=savefailuresnapondisk, allurereport=allurereport)
     vm.setpaths()
@@ -51,7 +51,7 @@ def test_matchingsnapshot(page:Page) -> None:
         assert True
     assert vm.visualtest_web(stepname="launchpage")
 
-def test_nonmatchingsnapshot(page:Page) -> None:
+def test_playwright_nonmatchingsnapshot(page:Page) -> None:
     vm = VisualTest(snapshot_path=visualtestresults, driverpage=page, updatesnapshot=updatesnapshot, 
                     savefailuresnapondisk=savefailuresnapondisk, allurereport=allurereport)
     vm.setpaths()
@@ -75,7 +75,7 @@ def test_nonmatchingsnapshot(page:Page) -> None:
     assert vm.visualtest_web(stepname="launchpage") == False
 
 #============Element specific tests==============================
-def test_goldensnapshot_element(page:Page) -> None:
+def test_playwright_goldensnapshot_element(page:Page) -> None:
     vm = VisualTest(snapshot_path=visualtestresults, driverpage=page, updatesnapshot=updatesnapshot, 
                     savefailuresnapondisk=savefailuresnapondisk, allurereport=allurereport)
     vm.setpaths(updatesnapshot=True)
@@ -90,12 +90,12 @@ def test_goldensnapshot_element(page:Page) -> None:
     resultpath = (
         Path(visualtestresults)
         / "Golden_Snapshots"
-        / "testplaywright"
-        / "test_goldensnapshot_element"
+        / "test_playwright"
+        / "test_playwright_goldensnapshot_element"
     )
     shutil.rmtree(os.path.abspath(resultpath))
 
-def test_updatesnapshot_element(page:Page) -> None:
+def test_playwright_updatesnapshot_element(page:Page) -> None:
     vm = VisualTest(snapshot_path=visualtestresults, driverpage=page, updatesnapshot=updatesnapshot, 
                     savefailuresnapondisk=savefailuresnapondisk, allurereport=allurereport)
     vm.setpaths(updatesnapshot=True)
@@ -109,7 +109,7 @@ def test_updatesnapshot_element(page:Page) -> None:
                                                                           , cartbutton, signupbutton])
     
 
-def test_matchingsnapshot_element(page:Page) -> None:
+def test_playwright_matchingsnapshot_element(page:Page) -> None:
     vm = VisualTest(snapshot_path=visualtestresults, driverpage=page, updatesnapshot=updatesnapshot, 
                     savefailuresnapondisk=savefailuresnapondisk, allurereport=allurereport)
     vm.setpaths()
@@ -123,7 +123,7 @@ def test_matchingsnapshot_element(page:Page) -> None:
                                                                           , cartbutton, signupbutton])
     
 
-def test_nonmatchingsnapshot_element(page:Page) -> None:
+def test_playwright_nonmatchingsnapshot_element(page:Page) -> None:
     vm = VisualTest(snapshot_path=visualtestresults, driverpage=page, updatesnapshot=updatesnapshot, 
                     savefailuresnapondisk=savefailuresnapondisk, allurereport=allurereport)
     vm.setpaths()
@@ -139,14 +139,14 @@ def test_nonmatchingsnapshot_element(page:Page) -> None:
     
 
 #============Multiple snapshot in a single test==============================
-def test_goldensnapshot_multi(page:Page) -> None:
+def test_playwright_goldensnapshot_multi(page:Page) -> None:
     pass
 
-def test_updatesnapshot_multi(page:Page) -> None:
+def test_playwright_updatesnapshot_multi(page:Page) -> None:
     pass
 
-def test_matchingsnapshot_multi(page:Page) -> None:
+def test_playwright_matchingsnapshot_multi(page:Page) -> None:
     pass
 
-def test_nonmatchingsnapshot_multi(page:Page) -> None:
+def test_playwright_nonmatchingsnapshot_multi(page:Page) -> None:
     pass
