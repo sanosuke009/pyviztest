@@ -35,15 +35,13 @@ jobs:
         python -m playwright install --with-deps
     - name: Test with pytest
       run: |
-        pytest ./com/tests/unittest/test_selenium.py
+        pytest ./com/tests/unittest/
     - name: Upload artifact
       if: always()
       uses: actions/upload-artifact@master
       with:
         name: allure-results-ubuntu
-        path: |
-          allure-results/*
-          VisualTestResults/*
+        path: allure-results/*
         retention-days: 30
 
   windows-pyviztest-tests:
@@ -70,15 +68,13 @@ jobs:
     - name: Test with pytest
       shell: pwsh
       run: |
-        pytest ./com/tests/unittest/test_selenium.py
+        pytest ./com/tests/unittest/
     - name: Upload artifact
       if: always()
       uses: actions/upload-artifact@master
       with:
         name: allure-results-windows
-        path: |
-          allure-results/*
-          VisualTestResults/*
+        path: allure-results/*
         retention-days: 30
 
   macos-pyviztest-tests:
@@ -104,15 +100,13 @@ jobs:
       env:
           CAT_API_KEY: ${{ secrets.CAT_API_KEY }}
       run: |
-        pytest ./com/tests/unittest/test_selenium.py
+        pytest ./com/tests/unittest/
     - name: Upload artifact
       if: always()
       uses: actions/upload-artifact@master
       with:
         name: allure-results-macos
-        path: |
-          allure-results/*
-          VisualTestResults/*
+        path: allure-results
         retention-days: 30
 
   generate-allure-report:
@@ -216,4 +210,4 @@ jobs:
     #       context: 'Test report'
     #       state: 'success'
     #       sha: ${{ github.event.pull_request.head.sha }}
-    #       target_url: simple-elf.github.io/github-allure-history/${{ github.run_number }}
+    #       target_url: simple-elf.github.io/github-allure-history/${{ github.run_number }}

@@ -13,7 +13,7 @@ playwright_videos_dir = "./recorded-videos/"
 playwright_traces_dir = "./test-results/"
 
 visualtestresults = "VisualTestResults"
-updatesnapshot = True
+updatesnapshot = False
 savefailuresnapondisk = False
 allurereport = True
 
