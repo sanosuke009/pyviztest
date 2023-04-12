@@ -1,1 +1,0 @@
---> Golden snapshots not found, so new Golden snapshot(s) created. Please review images and execute the tests again.
