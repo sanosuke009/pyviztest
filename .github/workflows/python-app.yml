@@ -46,16 +46,6 @@ jobs:
         name: allure-results-${{ matrix.os }}
         path: allure-results/*
         retention-days: 30
-
-  download-allure-report:
-    name: Download Allure Report
-    runs-on: ubuntu-latest
-    if: always()
-    needs: [ os-pyviztest-tests ]
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    steps:
     - name: Download Artifacts
       uses: actions/download-artifact@v3
       id: download-${{ matrix.os }}
@@ -73,7 +63,7 @@ jobs:
     name: Generate Allure Report
     runs-on: ubuntu-latest
     if: always()
-    needs: [ download-allure-report ]
+    needs: [ os-pyviztest-tests ]
     steps:
     - name: Allure gh-page Checkout
       uses: actions/checkout@v3
