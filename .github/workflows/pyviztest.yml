@@ -35,7 +35,7 @@ jobs:
         python -m playwright install --with-deps
     - name: Test with pytest
       run: |
-        pytest ./com/tests/unittest/testplaywright.py
+        pytest ./com/tests/unittest/
     - name: Upload artifact
       if: always()
       uses: actions/upload-artifact@master
@@ -68,7 +68,7 @@ jobs:
     - name: Test with pytest
       shell: pwsh
       run: |
-        pytest ./com/tests/unittest/testplaywright.py
+        pytest ./com/tests/unittest/
     - name: Upload artifact
       if: always()
       uses: actions/upload-artifact@master
@@ -100,7 +100,7 @@ jobs:
       env:
           CAT_API_KEY: ${{ secrets.CAT_API_KEY }}
       run: |
-        pytest ./com/tests/unittest/testplaywright.py
+        pytest ./com/tests/unittest/
     - name: Upload artifact
       if: always()
       uses: actions/upload-artifact@master

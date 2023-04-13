@@ -47,13 +47,6 @@ class VisualTestMain:
         self.test_file_name = classname.split(os.sep)[-1].strip('.py') #classname.split('\\')[-1].strip('.py')
         self.resultpath = str(Path(classname).parent.resolve()) if self.snapshot_path == '' else self.snapshot_path
         self.base_path = self.resultpath + os.sep + "Golden_Snapshots" + os.sep +  self.test_file_name +  os.sep + self.test_dir
-        
-        # self.base_path = os.path.join(
-        #             self.base_path
-        #             , "Golden_Snapshots"
-        #             , self.test_file_name
-        #             , self.test_dir
-        #     )
         self.filepath = Path(self.base_path).absolute().resolve()
         # Create a dir where all snapshot test failures will go
         self.results_dir_name_str = self.resultpath + os.sep +  "Failure_Snapshots" + os.sep +  self.test_file_name  + os.sep + self.test_name
@@ -63,12 +56,6 @@ class VisualTestMain:
             shutil.rmtree(self.test_results_dir)
         if updatesnapshot == True:
             self.updatesnapshots = True
-        print("sys.platform="+sys.platform)
-        print("self.snapshot_path="+self.snapshot_path)
-        print("self.resultpath="+self.resultpath)
-        print("self.base_path="+self.base_path)
-        print("self.filepath="+str(self.filepath))
-        print("Path(classname).parent.resolve()="+str(Path(classname).parent.resolve()))
 
     def captureGoldenSnapshot(self, img: bytes, *, stepname = '') -> bool:
         try:
@@ -163,7 +150,7 @@ class VisualTestMain:
         if len(snapshot_of_locators) > 0:
             for element in snapshot_of_locators:
                 if type(element) == WebElement:
-                    img = element.screenshot_as_png()
+                    img = element.screenshot_as_png
                 elif type(element) == Locator:
                     img = element.screenshot()
                 result = result & self.visualtest(img=img, stepname=stepname+str(self.retrieve_variable_name(element, numberofclassesaftertestclass)), 
@@ -208,16 +195,3 @@ class VisualTestMain:
         for i in range(self.numberofclassesaftertestclass):
             basicclassname = basicclassname.f_back
         return basicclassname.f_code.co_filename
-    
-    #     #Auxiliary method for retrieving variable names
-    # def retrieve_variable_name(self, var):
-    #     callers_local_vars = inspect.currentframe().f_back.f_back.f_back.f_locals.items()
-    #     return [var_name for var_name, var_val in callers_local_vars if var_val is var]
-    
-    # #Auxiliary method for retrieving calling function's names
-    # def retrieve_function_name(self):
-    #     return inspect.currentframe().f_back.f_back.f_back.f_back.f_code.co_name
-    
-    # #Auxiliary method for retrieving calling class's names
-    # def retrieve_class_name(self):
-    #     return inspect.currentframe().f_back.f_back.f_back.f_back.f_code.co_filename
