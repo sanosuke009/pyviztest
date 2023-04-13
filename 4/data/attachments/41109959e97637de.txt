@@ -1,5 +1,0 @@
-win32
-D:\a\pyviztest\pyviztest\VisualTestResults\Golden_Snapshots\testplaywright\test_updatesnapshot_element
---> Golden snapshots updated. Please review images
---> Golden snapshots updated. Please review images
---> Golden snapshots updated. Please review images

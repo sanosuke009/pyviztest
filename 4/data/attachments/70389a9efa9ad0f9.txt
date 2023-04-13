@@ -1,3 +1,0 @@
-linux
-/home/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_nonmatchingsnapshot
---> Golden snapshots not found, so new Golden snapshot(s) created. Please review images and execute the tests again.
