@@ -1,0 +1,137 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: Project PyVizTest
+
+on:
+  push:
+    branches: [ "master", "dev_sroy" ]
+  pull_request:
+    branches: [ "master" ]
+  #schedule: ## At every 30th minute past every hour from 2 through 10. Schedule the job to run at 4.am daily. '0 4 * * *' 
+  #  - cron: '*/30 2-10 * * *'
+
+permissions:
+  contents: write
+
+jobs:
+  os-pyviztest-tests:
+    name: Ubuntu - Test Playwright tests for pyviztest
+    #runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+    - name: Checking out
+      uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
+    - name: Install the browsers for playwright
+      run: |
+        python -m playwright install --with-deps
+    - name: Test with pytest
+      run: |
+        pytest ./com/tests/unittest/
+    - name: Upload artifact
+      if: always()
+      uses: actions/upload-artifact@master
+      with:
+        name: allure-results-${{ matrix.os }}
+        path: allure-results/*
+        retention-days: 30
+
+  download-allure-report:
+    name: Download Allure Report
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [ os-pyviztest-tests ]
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+    - name: Download Artifacts
+      uses: actions/download-artifact@v3
+      id: download-${{ matrix.os }}
+      with:
+        name: allure-results-${{ matrix.os }}
+        path: allure-results-${{ matrix.os }}
+    - name: Copy Allure-Result Files from ${{ matrix.os }}
+      uses: canastro/copy-file-action@master
+      with:
+        source: allure-results-${{ matrix.os }}/.
+        target: allure-results/
+        flags: '-r'
+
+  generate-allure-report:
+    name: Generate Allure Report
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [ download-allure-report ]
+    steps:
+    - name: Allure gh-page Checkout
+      uses: actions/checkout@v3
+      if: always()
+      continue-on-error: true
+      with:
+        ref: gh-pages
+        path: gh-pages
+    - name: Setting Allure-Report Action
+      uses: simple-elf/allure-report-action@master
+      if: always()
+      id: allure-report
+      with:
+        allure_results: allure-results
+        gh_pages: gh-pages
+        allure_report: allure-report
+        allure_history: allure-history
+        keep_reports: 20
+    - name: Deploy report to Github Pages
+      if: always()
+      uses: peaceiris/actions-gh-pages@v2
+      env:
+        PERSONAL_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        PUBLISH_BRANCH: gh-pages
+        PUBLISH_DIR: allure-history
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # - name: Post the link to the report
+    #   if: always()
+    #   uses: Sibz/github-status-action@v1
+    #   with: 
+    #       authToken: ${{secrets.GITHUB_TOKEN}}
+    #       context: 'Test report'
+    #       state: 'success'
+    #       sha: ${{ github.event.pull_request.head.sha }}
+    #       target_url: simple-elf.github.io/github-allure-history/${{ github.run_number }}
