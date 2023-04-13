@@ -1,0 +1,2 @@
+--> Golden snapshots will be created. Please review images
+--> Golden snapshots updated. Please review images
