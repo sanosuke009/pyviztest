@@ -48,11 +48,11 @@ jobs:
         retention-days: 30
     - name: Download Artifacts
       uses: actions/download-artifact@v3
-      id: download-${{ matrix.os }}
+      id: download-artifacts
       with:
         name: allure-results-${{ matrix.os }}
         path: allure-results-${{ matrix.os }}
-    - name: Copy Allure-Result Files from ${{ matrix.os }}
+    - name: Copy Allure-Result Files from OS
       uses: canastro/copy-file-action@master
       with:
         source: allure-results-${{ matrix.os }}/.
