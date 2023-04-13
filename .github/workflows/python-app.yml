@@ -15,13 +15,10 @@ permissions:
   contents: write
 
 jobs:
-  os-pyviztest-tests:
+  ubuntu-pyviztest-tests:
     name: Ubuntu - Test Playwright tests for pyviztest
-    #runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
+
     steps:
     - name: Checking out
       uses: actions/checkout@v3
@@ -43,28 +40,115 @@ jobs:
       if: always()
       uses: actions/upload-artifact@master
       with:
-        name: allure-results-${{ matrix.os }}
+        name: allure-results-ubuntu
         path: allure-results/*
         retention-days: 30
-    - name: Download Artifacts
-      uses: actions/download-artifact@v3
-      id: download-artifacts
+
+  windows-pyviztest-tests:
+    name: Windows - Test Playwright tests for pyviztest
+    runs-on: windows-latest
+    if: always()
+    needs: [ ubuntu-pyviztest-tests ]
+    steps:
+    - name: Checking out
+      uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
       with:
-        name: allure-results-${{ matrix.os }}
-        path: allure-results-${{ matrix.os }}
-    - name: Copy Allure-Result Files from OS
-      uses: canastro/copy-file-action@master
+        python-version: "3.10"
+    - name: Install dependencies
+      shell: pwsh
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
+    - name: Install the browsers for playwright
+      shell: pwsh
+      run: |
+        python -m playwright install --with-deps
+    - name: Test with pytest
+      shell: pwsh
+      run: |
+        pytest ./com/tests/unittest/
+    - name: Upload artifact
+      if: always()
+      uses: actions/upload-artifact@master
       with:
-        source: allure-results-${{ matrix.os }}/.
-        target: allure-results/
-        flags: '-r'
+        name: allure-results-windows
+        path: allure-results/*
+        retention-days: 30
+
+  macos-pyviztest-tests:
+    name: MacOS - Test Playwright tests for pyviztest
+    runs-on: macos-latest
+    if: always()
+    needs: [ windows-pyviztest-tests ]
+    steps:
+    - name: Checking out
+      uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install -r requirements.txt
+    - name: Install the browsers for playwright
+      run: |
+        python -m playwright install --with-deps
+    - name: Test with pytest
+      run: |
+        pytest ./com/tests/unittest/
+    - name: Upload artifact
+      if: always()
+      uses: actions/upload-artifact@master
+      with:
+        name: allure-results-macos
+        path: allure-results
+        retention-days: 30
 
   generate-allure-report:
     name: Generate Allure Report
     runs-on: ubuntu-latest
     if: always()
-    needs: [ os-pyviztest-tests ]
+    needs: [ macos-pyviztest-tests ]
     steps:
+    - name: Download Artifacts from Ubuntu
+      uses: actions/download-artifact@v3
+      id: download-ubuntu
+      with:
+        name: allure-results-ubuntu
+        path: allure-results-ubuntu
+    - name: Download Artifacts from Windows
+      uses: actions/download-artifact@v3
+      id: download-windows
+      with:
+        name: allure-results-windows
+        path: allure-results-windows
+    - name: Download Artifacts from MacOS
+      uses: actions/download-artifact@v3
+      id: download-macos
+      with:
+        name: allure-results-macos
+        path: allure-results-macos
+    - name: Copy Allure-Result Files from Ubuntu
+      uses: canastro/copy-file-action@master
+      with:
+        source: allure-results-ubuntu/.
+        target: allure-results/
+        flags: '-r'
+    - name: Copy Allure-Result Files from Windows
+      uses: canastro/copy-file-action@master
+      with:
+        source: allure-results-windows/.
+        target: allure-results/
+        flags: '-r'
+    - name: Copy Allure-Result Files from MacOS
+      uses: canastro/copy-file-action@master
+      with:
+        source: allure-results-macos/.
+        target: allure-results/
+        flags: '-r'
     - name: Allure gh-page Checkout
       uses: actions/checkout@v3
       if: always()
