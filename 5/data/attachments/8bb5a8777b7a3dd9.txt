@@ -1,6 +1,0 @@
-darwin
-/Users/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_matchingsnapshot_element
-/Users/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_matchingsnapshot_element
---> Golden snapshots not found, so new Golden snapshot(s) created. Please review images and execute the tests again.
---> Golden snapshots not found, so new Golden snapshot(s) created. Please review images and execute the tests again.
---> Golden snapshots not found, so new Golden snapshot(s) created. Please review images and execute the tests again.

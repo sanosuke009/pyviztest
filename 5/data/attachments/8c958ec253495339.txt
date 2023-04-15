@@ -1,9 +1,0 @@
-darwin
-/Users/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_updatesnapshot_element
-/Users/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_updatesnapshot_element
---> Golden snapshots will be created. Please review images
---> Golden snapshots updated. Please review images
---> Golden snapshots will be created. Please review images
---> Golden snapshots updated. Please review images
---> Golden snapshots will be created. Please review images
---> Golden snapshots updated. Please review images
