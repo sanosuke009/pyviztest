@@ -97,8 +97,6 @@ jobs:
       run: |
         python -m playwright install --with-deps
     - name: Test with pytest
-      env:
-          CAT_API_KEY: ${{ secrets.CAT_API_KEY }}
       run: |
         pytest ./com/tests/unittest/
     - name: Upload artifact
