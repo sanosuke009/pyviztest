@@ -1,6 +1,0 @@
-sys.platform=win32
-self.base_path=VisualTestResults/
-self.snapshot_path=VisualTestResults/
-self.filepath=VisualTestResults\Golden_Snapshots\testplaywright\test_nonmatchingsnapshot
-abs(self.filepath)=D:\a\pyviztest\pyviztest\VisualTestResults\Golden_Snapshots\testplaywright\test_nonmatchingsnapshot
---> Snapshots DO NOT match!
