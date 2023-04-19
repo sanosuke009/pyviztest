@@ -5,7 +5,7 @@
 ## Why Project pyviztest?
 
 ### Forewords
-[Kumar Aaditya](https://github.com/kumaraditya303) created a [pytest fixture](https://pypi.org/project/pytest-playwright-snapshot/) for [Playwright](https://playwright.dev/python/) using the power of [pixelmatch library](https://pypi.org/project/pixelmatch/) for Visual Testing, and [Symon Storozhenko](https://github.com/symon-storozhenko) enhanced it to create [pytest-playwright-visual](https://pypi.org/project/pytest-playwright-visual/). I really loved both, so I tried to realign the same concept by developing a library and added a few more functionality to make the use of it more flexible, and also compatible with [Playwright](https://playwright.dev/python/) and [Selenium](https://www.selenium.dev/). All thanks go to both of them for being the harbinger of the visual testing libraries in python. I merely followed the path and improvized.
+In Python there was no robust and integrable Visual Test Automation library/module. Thankfully, [Kumar Aaditya](https://github.com/kumaraditya303) created a [pytest fixture](https://pypi.org/project/pytest-playwright-snapshot/) for [Playwright](https://playwright.dev/python/) using the power of [pixelmatch library](https://pypi.org/project/pixelmatch/) for Visual Testing, and [Symon Storozhenko](https://github.com/symon-storozhenko) enhanced it to create [pytest-playwright-visual](https://pypi.org/project/pytest-playwright-visual/). I really loved both, so I tried to realign the same concept by developing a library and added a few more functionality to make the use of it more flexible, and also compatible with [Playwright](https://playwright.dev/python/) and [Selenium](https://www.selenium.dev/). All thanks go to both of them for being the harbinger of the visual testing libraries in python. I merely followed the path and improvized.
 
 ### Features
 #### So, previously created [pytest-playwright-visual](https://pypi.org/project/pytest-playwright-visual/) had the power to be summoned anywhere inside the tests which had it as a parameter, and to
@@ -34,8 +34,8 @@
 
 ### Installing
 Simple and easy to install because it's just another python library! Install using below pip command:
-```shell
-    pip install pyviztest
+```bash
+    $ pip install pyviztest
 ```
 ### Configuration
 1. **_Required:_** Import VisualTest from pyviztest.viztest
@@ -46,6 +46,7 @@ Simple and easy to install because it's just another python library! Install usi
 ```python
     visualtest = VisualTest(driverpage=driver)
 ```
+> **Note**
 > You may directly create an object of VisualTest class for each test separately and proceed with that object, or you can create a pytest fixture for dependency injection to initialize the VisualTest instance from inside that class. Using a separate class/fixture to implement dependency injection is always recommended.
 The constructor of VisualTest class can take 5 arguments i.e. `snapshot_path`, [MANDATORY]`driverpage`: WebDriver/Page, `updatesnapshot`, `savefailuresnapondisk` & `allurereport`. The usage of them are elaborated in below code snippet comments.
 ```python
@@ -61,6 +62,7 @@ The constructor of VisualTest class can take 5 arguments i.e. `snapshot_path`, [
 ```python
     visualtest.setpaths()
 ```
+> **Note**
 > The setpaths function can take 2 optional arguments i.e. `updatesnapshot` and `numberofclassesaftertestclass`. The usage of them are elaborated in below code snippet comments.
 ```python
     (method) def setpaths(
@@ -69,11 +71,71 @@ The constructor of VisualTest class can take 5 arguments i.e. `snapshot_path`, [
     ) -> None
 ```
 > **Warning**
-> `numberofclassesaftertestclass` parameter helps you to fetch the testcase name in order to generate the snapshot's name by default if you are not providing any specific name. By default the value of it is 0, that means it assumes that the visualtest_web() method is being invoked from inside the test mthod directly without any further abstraction. If you add _N_ number of abstractions, then you should provide the value of the parameters as _N_.
+> `numberofclassesaftertestclass` parameter helps you to fetch the testcase name in order to generate the snapshot's name by default if you are not providing any specific name. By default the value of it is 0, that means it assumes that the visualtest_web() method is being invoked from inside the test mthod directly without any further abstraction. If you add _N_ number of abstractions, then you should provide the value of the parameters as _N_. See point no. 4 for more info.
 ```python
     visualtest.setpaths(numberofclassesaftertestclass=N)
 ```
 4. Now that the configuration is done, you have to invoke `visualtest_web()` method wherever the webpage snapshots need to be validated.
+```python
+    assert vt.visualtest_web(stepname="validateloginpage")
+```
+> **Note**
+> This method takes a minimum of 7 arguments i.e. `stepname`, `threshold`, `fail_fast`, `updatesnapshot`, `fullpage`, `snapshot_of_locators` and `exclude_locators`. The usage of them are elaborated in below code snippet comments.
+```python
+    (method) def visualtest_web(
+        *,
+        stepname: str = '', # Optional, but it is recommended to provide the value to distinguish snapshots
+        threshold: float = 0.1, # Optional, sets the threshold for the comparing the snapshots 0 to 1
+        fail_fast: bool = False, # Optional, if you'd like to fail the comparison even if 1 pixel doesn't match, make it True
+        updatesnapshot: bool = False, # Same as the updatesnapshot mentioned above. It provides the flexibility to update snapshots for a particular test step. If not given, it would take the default value during creation of VisualTest class object or setpaths().
+        fullpage: bool = True, # Optional, to take snapshot of the full page or not
+        snapshot_of_locators: list = [], # Optional, you may send set of locators or webelements to take snapshots of only those elements instead of a full page snapshot
+        exclude_locators: list = [] # Optional, you may send set of locators to mask them in the snapshots, so during the comparison they will be excluded.
+    ) -> bool
+```
+> **Warning**
+> `fullpage` and `exclude_locators` are only applicable for **Playwright** tests. They **do not work** for **Selenium** tests.
+> **Note**
+> This method returns a boolean value as per below table:
+
+> **Warning**
+> ### Do not Change the value of `numberofclassesaftertestclass` if you don't understand the below concept well.
+> As mentioned above already, `numberofclassesaftertestclass` parameter helps you to fetch the testcase name in order to generate the snapshot's name by default if you are not providing any specific name. Let's look at an example:
+```python
+       Project|
+              |---src|
+              |       |--testsuitename|
+              |                       |---test_playwright.py|
+              |                       |                     |---test_1()
+              |                       |                     |---test_2()
+              |                       |
+              |                       |---test_selenium.py|
+              |                                           |---test_1()
+              |                                           |---test_2()
+              |---VisualTestResults                     
+```
+> In case of the folder structure depicted above, if the OS is Linux, `snapshot_path` is `VisualTestResults`, and the `visualtest_web()` method is invoked from the `test_1()` and `test_2()` methods, then the name of the Golden snapshot created for `test_1()` in `test_playwright.py` will be `linux_test_1.png` and it will reside inside **_VisualTestResults/Golden_Snapshots/test_playwright/test_1/linux_test_1.png_**. So after the execution if `updatesnapshot` = **True**, the folder structure will be like below:
+```python
+       Project|
+              |---src|
+              |       |--testsuitename|
+              |                       |---test_playwright.py|
+              |                       |                     |---test_1()
+              |                       |                     |---test_2()
+              |                       |
+              |                       |---test_selenium.py|
+              |                                           |---test_1()
+              |                                           |---test_2()
+              |---VisualTestResults|
+                                   |---Golden_Snapshots|
+                                                       |---test_playwright|
+                                                                          |---test_1|
+                                                                          |         |---linux_test_1.png  
+                                                                          |  
+                                                                          |---test_2|
+                                                                                    |---linux_test_2.png           
+```
+
 
 
 ### Example Code
