@@ -1,8 +1,0 @@
-sys.platform=darwin
-self.snapshot_path=VisualTestResults
-self.base_path=/Users/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_matchingsnapshot_element
-self.filepath=/Users/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_matchingsnapshot_element
-Path(classname).parent.resolve()=/Users/runner/work/pyviztest/pyviztest/com/tests/unittest
---> Golden snapshots not found, so new Golden snapshot(s) created. Please review images and execute the tests again.
---> Golden snapshots not found, so new Golden snapshot(s) created. Please review images and execute the tests again.
---> Golden snapshots not found, so new Golden snapshot(s) created. Please review images and execute the tests again.
