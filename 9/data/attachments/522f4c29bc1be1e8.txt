@@ -1,8 +1,0 @@
-sys.platform=linux
-self.base_path=/home/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_matchingsnapshot
-Path(self.base_path)=/home/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_matchingsnapshot
-Path(classname).parent.resolve()=/home/runner/work/pyviztest/pyviztest/com/tests/unittest
-self.snapshot_path=VisualTestResults
-self.filepath=/home/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_matchingsnapshot
-abs(self.filepath)=/home/runner/work/pyviztest/pyviztest/com/tests/unittest/testplaywright/test_matchingsnapshot
---> Golden snapshots not found, so new Golden snapshot(s) created. Please review images and execute the tests again.
