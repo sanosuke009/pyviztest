@@ -1,8 +1,0 @@
-sys.platform=win32
-self.snapshot_path=VisualTestResults
-self.base_path=VisualTestResults/Golden_Snapshots/testplaywright/test_matchingsnapshot_element
-self.filepath=D:\a\pyviztest\pyviztest\VisualTestResults\Golden_Snapshots\testplaywright\test_matchingsnapshot_element
-Path(classname).parent.resolve()=D:\a\pyviztest\pyviztest\com\tests\unittest
---> Snapshots match perfectly!
---> Snapshots match perfectly!
---> Snapshots match perfectly!

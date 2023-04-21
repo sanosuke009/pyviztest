@@ -1,8 +1,0 @@
-sys.platform=win32
-self.snapshot_path=VisualTestResults
-self.base_path=VisualTestResults/Golden_Snapshots/testplaywright/test_updatesnapshot_element
-self.filepath=D:\a\pyviztest\pyviztest\VisualTestResults\Golden_Snapshots\testplaywright\test_updatesnapshot_element
-Path(classname).parent.resolve()=D:\a\pyviztest\pyviztest\com\tests\unittest
---> Golden snapshots updated. Please review images
---> Golden snapshots updated. Please review images
---> Golden snapshots updated. Please review images
