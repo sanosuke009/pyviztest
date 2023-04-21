@@ -97,13 +97,14 @@ The constructor of VisualTest class can take 5 arguments i.e. `snapshot_path`, [
 > `fullpage` and `exclude_locators` are only applicable for **Playwright** tests. They **do not work** for **Selenium** tests.
 > **Note**
 > This `visualtest_web()` method returns a boolean value as per below table:
+
 | updatesnapshot(VisualTest()) | updatesnapshot(setpaths()) | updatesnapshot(visualtest_web()) | Snapshots Match? | visualtest_web() |
-| :----------: | :----------: | :----------: | :----------: | :----------: |
-| True | - | - | - | True |
-| False | True | - | - | True |
-| False | False | True | - | True |
-| False | False | False | True | True |
-| False | False | False | False | False |
+| :----------:                 | :----------:               | :----------:                     | :----------:     | :----------:     |
+| True                         | X                          | X                                | X                | True             |
+| False                        | True                       | X                                | X                | True             |
+| False                        | False                      | True                             | X                | True             |
+| False                        | False                      | False                            | True             | True             |
+| False                        | False                      | False                            | False            | False            |
 
 > **Warning**
 > ### Do not Change the value of `numberofclassesaftertestclass` if you don't understand the below concept well.
@@ -237,14 +238,18 @@ When the Golden Snapshots (the reference snapshots with which the execution snap
 $ pytest
 ```
 After the execution, you will see that the Golden Snaphots will be generated in your project directory where you have set your `snapshot_path`.
+
 ![Create Golden Snapshots](./images/goldensnaps.PNG)
+
 #### Second Time onwards/For snapshot validation:
 Make the value of `updatesnapshot` as `False` and call the pytest command in command line interface.
 ```bash
 $ pytest
 ```
 After the execution, if the value of `savefailuresnapondisk` is `True`, you will see that the Failure Snaphots will be generated in your project directory where you have set your `snapshot_path`. If no test case fails, no Failure Snapshot would be generated. If the value of `savefailuresnapondisk` is `False`, Snapshot files will not be generated.
+
 ![Create Failure Snapshots](./images/failuresnaps.PNG)
+
 Now, if `allurereport` = `True`, then you can generate allure report but you have to run below command:
 ```bash
 $ pytest --alluredir=allure-results
@@ -254,8 +259,10 @@ followed by
 $ allure serve .\allure-results\
 ```
 Then you will be able to see the generated allure reports with pass and failure reports with mismatch snapshots.
+
 ![Allurereport](./images/allure.PNG)
 ![Mismatch Snapshots Embedded in Allure Report](./images/alluremismatch.PNG)
+
 #### To Update Golden Snapshots:
 If you want to update the Golden Snapshots of all the validations in a single VisualTest() session, then make the value of `updatesnapshot` as `True` while creating a `VisualTest()` object. You'd have the option to do the same for `setpaths()` and `visualtest_web` methods as well. Then call the pytest command in command line interface.
 ```bash
